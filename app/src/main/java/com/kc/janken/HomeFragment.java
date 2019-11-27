@@ -39,6 +39,7 @@ public class HomeFragment extends Fragment {
 
     ImageView imgHuman, imgGPU;
     TextView scoreHuman, scoreGPU;
+    TextView mMessage;
     Button btnStart, btnStop;
     ImageView refreshImage;
     View view;
@@ -95,9 +96,12 @@ public class HomeFragment extends Fragment {
         btnStart = view.findViewById(R.id.btnStart);
         btnStop = view.findViewById(R.id.btnStop);
 
+       mMessage = view.findViewById(R.id.tvMessage);
+
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //mMessage.setVisibility(View.INVISIBLE);
                 RunAnimationHuman();
                 RunAnimationGpu();
                 if (tempScoreHuman + tempScoreGPU == 3){
@@ -213,7 +217,8 @@ public class HomeFragment extends Fragment {
                 this.tempScoreHuman = this.tempScoreHuman + 0;
                 this.tempScoreGPU = this.tempScoreGPU + 0;
                 setScore();
-                Toast.makeText(getContext(), "Draw (Scisor)", Toast.LENGTH_SHORT).show();
+                setMessage("Draw (Scisor)");
+                //Toast.makeText(getContext(), "Draw (Scisor)", Toast.LENGTH_SHORT).show();
         }else if (imgHuman.equalsIgnoreCase("gunting")
                     && imgGPU.equalsIgnoreCase("kertas")){
                 //human++
@@ -223,7 +228,8 @@ public class HomeFragment extends Fragment {
                 this.tempScoreHuman = this.tempScoreHuman + 1;
                 this.tempScoreGPU = this.tempScoreGPU + 0;
                 setScore();
-                Toast.makeText(getContext(), "Human Win (Scisor)", Toast.LENGTH_SHORT).show();
+                setMessage("Human Win (Scisor)");
+                //Toast.makeText(getContext(), "Human Win (Scisor)", Toast.LENGTH_SHORT).show();
             }else if (imgHuman.equalsIgnoreCase("gunting")
                     && imgGPU.equalsIgnoreCase("batu")){
                 // gpu ++
@@ -233,7 +239,8 @@ public class HomeFragment extends Fragment {
                 this.tempScoreHuman = this.tempScoreHuman + 0;
                 this.tempScoreGPU = tempScoreGPU +1;
                 setScore();
-                Toast.makeText(getContext(), "GPU Win (Rock)", Toast.LENGTH_SHORT).show();
+                setMessage("GPU Win (Rock)");
+                //Toast.makeText(getContext(), "GPU Win (Rock)", Toast.LENGTH_SHORT).show();
             }else if (imgHuman.equalsIgnoreCase("kertas")
                     && imgGPU.equalsIgnoreCase("kertas")){
                 // 0 0
@@ -243,7 +250,8 @@ public class HomeFragment extends Fragment {
                 this.tempScoreHuman = this.tempScoreHuman + 0;
                 this.tempScoreGPU = this.tempScoreGPU +0;
                 setScore();
-                Toast.makeText(getContext(), "Draw (paper)", Toast.LENGTH_SHORT).show();
+                setMessage("Draw (paper)");
+                //Toast.makeText(getContext(), "Draw (paper)", Toast.LENGTH_SHORT).show();
             }else if (imgHuman.equalsIgnoreCase("kertas")
                     && imgGPU.equalsIgnoreCase("gunting")){
                 //gpu ++
@@ -253,7 +261,8 @@ public class HomeFragment extends Fragment {
                 this.tempScoreHuman = this.tempScoreHuman + 0;
                 this.tempScoreGPU = this.tempScoreGPU +1;
                 setScore();
-                Toast.makeText(getContext(), "GPU Win (Scisor)", Toast.LENGTH_SHORT).show();
+                setMessage("GPU Win (Scisor)");
+                //Toast.makeText(getContext(), "GPU Win (Scisor)", Toast.LENGTH_SHORT).show();
             }else if (imgHuman.equalsIgnoreCase("kertas")
                     && imgGPU.equalsIgnoreCase("batu")){
                 // human++
@@ -263,7 +272,8 @@ public class HomeFragment extends Fragment {
                 this.tempScoreHuman = this.tempScoreHuman + 1;
                 this.tempScoreGPU = this.tempScoreGPU +0;
                 setScore();
-                Toast.makeText(getContext(), "Human Win (Paper)", Toast.LENGTH_SHORT).show();
+                setMessage("Human Win (Paper)");
+                //Toast.makeText(getContext(), "Human Win (Paper)", Toast.LENGTH_SHORT).show();
             }else if (imgHuman.equalsIgnoreCase("batu")
                     && imgGPU.equalsIgnoreCase("batu")){
                 // 0 0
@@ -273,7 +283,8 @@ public class HomeFragment extends Fragment {
                 this.tempScoreHuman = this.tempScoreHuman + 0;
                 this.tempScoreGPU = this.tempScoreGPU +0;
                 setScore();
-                Toast.makeText(getContext(), "Draw (Rock)", Toast.LENGTH_SHORT).show();
+                setMessage("Draw (Rock)");
+               // Toast.makeText(getContext(), "Draw (Rock)", Toast.LENGTH_SHORT).show();
             }else if (imgHuman.equalsIgnoreCase("batu")
                     && imgGPU.equalsIgnoreCase("gunting")){
                 //human ++
@@ -283,7 +294,8 @@ public class HomeFragment extends Fragment {
                 this.tempScoreHuman = this.tempScoreHuman + 1;
                 this.tempScoreGPU = this.tempScoreGPU + 0;
                 setScore();
-                Toast.makeText(getContext(), "Human Win (Rock)", Toast.LENGTH_SHORT).show();
+                setMessage("Human Win (Rock)");
+                //Toast.makeText(getContext(), "Human Win (Rock)", Toast.LENGTH_SHORT).show();
             }else if (imgHuman.equalsIgnoreCase("batu")
                     && imgGPU.equalsIgnoreCase("kertas")){
                 //gpu ++
@@ -293,7 +305,8 @@ public class HomeFragment extends Fragment {
                 this.tempScoreHuman = this.tempScoreHuman + 0;
                 this.tempScoreGPU = this.tempScoreGPU +1;
                 setScore();
-                Toast.makeText(getContext(), "GPU Win (Paper)", Toast.LENGTH_SHORT).show();
+                setMessage("GPU Win (Paper)");
+                //Toast.makeText(getContext(), "GPU Win (Paper)", Toast.LENGTH_SHORT).show();
             }else {
                 Toast.makeText(getContext(), "Nothing to show", Toast.LENGTH_SHORT).show();
             }
@@ -327,6 +340,10 @@ public class HomeFragment extends Fragment {
     void cekArray(){
         ArrayList<HistoryModel> a = Rak.grab("arrayHistory");
         Log.d("aa", a.get(0).getHumanScore() + "");
+    }
+
+    void setMessage(String message){
+        mMessage.setText(message);
     }
 
 }
